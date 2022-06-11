@@ -1,12 +1,14 @@
 import React from 'react'
 import './WeatherMain.css'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState } from 'react' 
+
+console.log(process.env);
 
 const Weathermain = () => {
     const [data, setData] = useState({})
     const [location, setLocation] = useState('')
-    const url =`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=8c1d38128d3471ffb2b2f90ae6f46aab`
+    const url =`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
 
     const searchLocation = (event) => {
         if (event.key === 'Enter') {
@@ -41,7 +43,7 @@ const Weathermain = () => {
                 </div>
             </div>
 
-            {data.name != undefined &&
+            {data.name !== undefined &&
                 <div className="bottom">
                     <div className="feels">
                         {data.main ? <p className='bold'>{data.main.feels_like.toFixed()}℉</p> : null}
